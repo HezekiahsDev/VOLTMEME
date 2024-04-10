@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 
 
   app.get("/dashboard", (req, res) => {
-    res.render("dashboard.ejs");
+    res.render("/public/dashboard.html");
   });
 
 // Start the server
