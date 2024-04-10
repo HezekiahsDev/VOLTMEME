@@ -1,13 +1,39 @@
 //installed dependencies init
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
+const bcrypt = require("bcrypt");
+
+//database pool
+const {
+    createPool
+} = require("mysql");
+
+const pool = createPool({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "test",
+    connectionLimit: 10
+});
+
 app.use(express.static('public'));
+//end of pool
 
 
+//posts
+ 
 
 // Your other routes and middleware come here
+
+//Error route
+
+app.use(function(req, res) {
+    res.status(400);
+    return res.send(`404 Error: Resource not found`);
+  });
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
+    res.sendFile(__dirname + '/public/index.html');
   });
 
 
@@ -17,6 +43,11 @@ app.get('/', (req, res) => {
 
   app.get('/signup', (req, res) => {
     res.sendFile(__dirname + '/public/signup.html');
+  });
+
+
+  app.get("/dashboard", (req, res) => {
+    res.render("dashboard.ejs");
   });
 
 // Start the server
