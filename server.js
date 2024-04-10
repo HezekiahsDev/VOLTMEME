@@ -10,13 +10,13 @@ const {
 
 const pool = createPool({
     host: "localhost",
-    user: "root",
-    password: "",
-    database: "test",
+    user: "admin",
+    password: "Gabbyessentials",
+    database: "volt",
     connectionLimit: 10
 });
 
-app.use(express.static('public'));
+
 //end of pool
 
 
@@ -27,10 +27,10 @@ app.use(express.static('public'));
 
 //Error route
 
-app.use(function(req, res) {
-    res.status(400);
-    return res.send(`404 Error: Resource not found`);
-  });
+
+
+
+  app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
