@@ -1,89 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Dashboard</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/images/favicon.png" rel="icon">
-  <link href="assets/images/favicon.png" rel="apple-touch-icon">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-  <!-- Google Fonts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+     <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  rel="stylesheet">
 
 
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;display=swap"
-    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;display=swap"
+  rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+        .header {
+            align-self: center;
+            background-color: #6536F7;
+            color: #fff;
+            border-radius: 5px;
+            padding: 20px 20px;
+            margin-top: 40px;
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            align-items: center;
+            justify-content: space-between;
+        }
 
+        .header .profile-icon {
+            margin-left: 100px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 100px; /* Adjust based on header height */
+            margin-bottom: 60px; /* Adjust based on footer height */
+            padding: 20px;
+        }
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            .header, .footer {
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header class="header">
+        <h1 style="font-family: 'Poppins', 'Lucida Sans Regular'; font-size: 18px;">Dashboard</h1>
+        <div class="profile-icon">
+            <img src="assets/images/profile.png" alt="Profile Icon" width="30">
+        </div>
+    </header>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top bg-white ">
     <div class="container">
-      <div class="profile">
-        <ul class="dashboard">
-          <li class="dash">
-            DASHBOARD
-            
-            <ul class="dropdown">
-              <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
-            </ul>
-            <a href="#"><img src="./assets/images/profile.png" alt=""></a>
-          </li>
-        </ul>
-        <p class="para">Hello Song</p>
-        <p class="welcome">WELCOME TO VOLTMEMECOIN</p>
-      </div>
+        <!-- Content Goes Here -->
+        <p>This is where your dashboard content will go.</p>
     </div>
-  </header><!-- End Header -->
 
-  <section id = sec>
-    <div class="main">
-      <h3>CLICK THE LINK BELOW TO CLAIM AIRDROP</h3>
-    </div>
-  </section>
-  
-
-  <!-- End #main -->
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+    <footer class="footer">
+        &copy; 2024 Your Company Name
+    </footer>
 </body>
-
-
-
 </html>
