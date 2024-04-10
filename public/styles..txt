@@ -23,11 +23,12 @@ body{
     justify-content: end;
 }
 .para{
-    line-height: 0px;
-    font-weight: 800px;
+    line-height: 21px;
+    font-weight: 400px;
     color: black;
     margin-left: 20px;
-    font-size: 10px;
+    font-size: 14px;
+    height: 21px;
 }
 .welcome{
     text-align: center;
@@ -35,6 +36,21 @@ body{
     font-weight: bold;
     font-size: 15px;
 }
-h3 {
-    color: black;
+.dropdown {
+    display: inline-block;
+    text-align: 70px;
+    list-style-type: none;
+    width: 100%;
+    position: absolute;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    line-height: 10px;
+    height: 21px;
+    z-index: 999;
+    height: 15px;
+
+}
+.main {
+    background-color: #6536f7;
 }
