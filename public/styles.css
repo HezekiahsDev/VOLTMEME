@@ -1,0 +1,31 @@
+.dash{
+    width: auto;
+    background-color: #6536f7;
+    margin: 30px;
+    padding: 10px;
+    color: white;
+    font-weight: 700px;
+    font-size: small;
+}
+.name{
+    padding: 0px, 0px, 0px, 0px;
+    text-align: start;
+    color: black;
+    font-weight: 800px;
+    display: flex;
+    justify-content: left;
+    margin-left: 40px;
+    margin-top: 0%;
+    border: 0px;
+}
+.welcome{
+    color: #6536f7;
+    font-weight: 1000px;
+    margin: auto;
+    text-align: center;
+    border: 0px;
+}
+.icon{
+    display: inline;
+    text-align: end;
+}
