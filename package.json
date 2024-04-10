@@ -1,0 +1,11 @@
+{
+  "name": "voltmeme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startDev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
