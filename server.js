@@ -1,7 +1,30 @@
+if (process.env.MODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+
+
+
 //installed dependencies init
 const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
+const passport = require("passport");
+const initializePassport = require("./passport-config")
+const flash = require("express-flash");
+const session = require("express-session");
+
+//Auth init
+initializePassport(
+  passport,
+  email => users.find(user => user.email == email)
+)
+
+//End Auth init
+
+//Session init
+
+//Session end
 
 //database pool
 const {
@@ -9,7 +32,7 @@ const {
 } = require("mysql");
 
 const pool = createPool({
-    host: "localhost",
+    host: "localhost", 
     user: "Admin",
     password: "Gabbyessentials",
     database: "volt_meme",
@@ -22,8 +45,26 @@ const pool = createPool({
 
 //posts
 app.use(express.urlencoded({extended: false}));
+app.use(flash());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUnInitialize: false,
+}));
+app.use("passport.init()");
+app.use("passport.session()")
 
-//signup request
+
+
+//login post request
+app.post("/login", passport.authenticate("local", {
+  successRedirect: "/Dashboard",
+  failureRedirect: "/login",
+  failureFlash: true,
+}))
+
+pool.query
+//signup post request
 app.post("/signup", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
