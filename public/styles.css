@@ -6,12 +6,14 @@ header {
     background-color: #6536F7;
     margin-top: 70px;
     border-radius: 5px;
+    display: flex;
     padding: 10px;
-    color: #ffffff;
-    font-weight: bold;
+   
+    font-size: large;
 }
 
-.container {
+.top-container {
+
     padding: 10px;
     border-radius: 20px;
 }
@@ -49,8 +51,19 @@ a {
     padding: 12px;
     border-radius: 10px;
     font-weight: bold;
+    margin-top: 50PX;
+    margin-bottom: 70px;
+    margin-left: 7px;
+    margin-right: 7px;
+    min-width: 22rem;
+}
+
+.button-connect {
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
     margin-top: 100px;
-    margin-bottom: 40px;
     margin-left: 7px;
     margin-right: 7px;
     min-width: 22rem;

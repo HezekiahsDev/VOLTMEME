@@ -6,10 +6,47 @@
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-</head>
+     <!-- Favicons -->
+<link href="assets/images/favicon.png" rel="icon">
+<link href="assets/images/favicon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;display=swap"
+  rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="assets/css/style.css" rel="stylesheet">
+
 <body>
-    <header>
-        DASHBOARD
+    <header class="navbar">
+        <h2 class="head-top" style="margin-left: 20px; margin-top: 20px; font: 1em sans-serif; font-size: large; font-weight: 700; color: white;">
+            Welcome
+        </h2>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+              <li><a class="nav-link scrollto" href="#">Presale</a></li>
+              <li action="/logout" method="POST" ><a class="nav-link" href="/logout">Logout</a></li>
+              <li class="nav-btn">
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+          <a href="#"><img src="assets/images/profile.png" alt=""></a>
     </header>
 
     <div class="top-container">
@@ -27,10 +64,10 @@
                 <a href="#">CLICK ON THE LINK BELOW TO CLAIM AIRDROP</a>
             </button>
             <div class="claim">
-                <a href="#"><img src="/public/assets/images/claim.png" alt=""></a>
+                <a href="#"><img src="assets/images/claim.png" alt=""></a>
             </div>
             <div>
-                <button class="button">
+                <button class="button-connect">
                     <a href="#">CONNECT WALLET</a>
                 </button>
             </div>
@@ -39,5 +76,18 @@
             </div>
         </div>
     </main>
+
+     <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
 </body>
 </html>
