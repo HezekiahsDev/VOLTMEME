@@ -90,12 +90,29 @@ app.get('/resetpw', checkNotAuthenticated, (req, res) => {
 //     res.redirect('/login')
 //   })
 
-app.delete("/logout", (req, res) => {
+/**app.delete("/logout", (req, res) => {
   req.logout(req.user, err => {
       if (err) return next(err)
       res.redirect("/")
   })
-})
+})**/
+//app.get("/logout", (req, res) => {
+//  req.logout(); // Clear the login session for the current user
+//  res.redirect("/"); // Redirect to the homepage after logout
+//});
+
+app.post("/logout", (req, res) => {
+  // Clear the session
+  req.session.destroy(err => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      res.status(500).send("Internal Server Error");
+    } else {
+      // Redirect to the homepage or login page after logout
+      res.redirect("/");
+    }
+  });
+});
 
 function checkAuthenticated(req, res, next){
   if(req.isAuthenticated()){
@@ -111,4 +128,4 @@ function checkNotAuthenticated(req, res, next){
   next()
 }
 
-app.listen(3000)
+app.listen(3000);
