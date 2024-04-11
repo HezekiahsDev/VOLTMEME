@@ -62,16 +62,22 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 })
 
 // Routes
+app.use(express.static('public'))
+
 app.get('/', checkAuthenticated, (req, res) => {
-  res.render("index.ejs", {name: req.user.name})
+  res.sendFile(__dirname + "/public/dashboard.html", {name: req.user.name})
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render("login.ejs")
+  res.sendFile(__dirname + '/public/login.html')  
 })
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
-  res.render("register.ejs")
+  res.sendFile(__dirname + '/public/register.html')
+})
+
+app.get('/resetpw', checkNotAuthenticated, (req, res) => {
+  res.sendFile(__dirname + '/public/resetpw.html')  
 })
 // End Routes
 
