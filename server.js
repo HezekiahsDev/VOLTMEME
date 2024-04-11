@@ -1,126 +1,104 @@
-if (process.env.MODE_ENV !== "production") {
-  require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config()
 }
 
 
-
-
-//installed dependencies init
-const express = require("express");
-const app = express();
-const bcrypt = require("bcrypt");
-const passport = require("passport");
+// Importing all Libraies that we installed using npm
+const express = require("express")
+const app = express()
+const bcrypt = require("bcrypt") // Importing bcrypt package
+const passport = require("passport")
 const initializePassport = require("./passport-config")
-const flash = require("express-flash");
-const session = require("express-session");
+const flash = require("express-flash")
+const session = require("express-session")
+const methodOverride = require("method-override")
 
-//Auth init
 initializePassport(
   passport,
-  email => users.find(user => user.email == email)
-)
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+  )
 
-//End Auth init
 
-//Session init
 
-//Session end
+const users = []
 
-//database pool
-const {
-    createPool
-} = require("mysql");
-
-const pool = createPool({
-    host: "localhost", 
-    user: "Admin",
-    password: "Gabbyessentials",
-    database: "volt_meme",
-    connectionLimit: 10
-});
-//end of pool
-//DB init
-
-//end of db init
-
-//posts
-app.use(express.urlencoded({extended: false}));
-app.use(flash());
+app.use(express.urlencoded({extended: false}))
+app.use(flash())
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUnInitialize: false,
-}));
-app.use("passport.init()");
-app.use("passport.session()")
+  resave: false, // We wont resave the session variable if nothing is changed
+  saveUninitialized: false
+}))
+app.use(passport.initialize()) 
+app.use(passport.session())
+app.use(methodOverride("_method"))
 
-
-
-//login post request
-app.post("/login", passport.authenticate("local", {
-  successRedirect: "/Dashboard",
+// Configuring the register post functionality
+app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
+  successRedirect: "/",
   failureRedirect: "/login",
-  failureFlash: true,
+  failureFlash: true
 }))
 
-pool.query
-//signup post request
-app.post("/signup", async (req, res) => {
+// Configuring the register post functionality
+app.post("/register", checkNotAuthenticated, async (req, res) => {
+
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    // Insert user data into the database
-    pool.query('INSERT INTO users (id, fullname, email, password) VALUES (?, ?, ?, ?)',
-      [Date.now().toString(), req.body.fullname, req.body.email, hashedPassword], (error, results) => {
-        if (error) {
-          console.error('Error inserting user data:', error);
-          res.redirect("/signup"); // Redirect to registration page on error
-          return;
-        }
-
-        // User signed up successfully
-        res.redirect("/login"); // Redirect to login page on success
-      });
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      users.push({
+          id: Date.now().toString(), 
+          name: req.body.name,
+          email: req.body.email,
+          password: hashedPassword,
+      })
+      console.log(users); // Display newly registered in the console
+      res.redirect("/login")
+      
   } catch (e) {
-    console.error('Error hashing password:', e);
-    res.redirect("/signup"); // Redirect to registration page on error
+      console.log(e);
+      res.redirect("/register")
   }
-});
-//End signup req
- 
+})
 
- //end test DB
+// Routes
+app.get('/', checkAuthenticated, (req, res) => {
+  res.render("index.ejs", {name: req.user.name})
+})
 
-// Your other routes and middleware come here
+app.get('/login', checkNotAuthenticated, (req, res) => {
+  res.render("login.ejs")
+})
 
+app.get('/register', checkNotAuthenticated, (req, res) => {
+  res.render("register.ejs")
+})
+// End Routes
 
+// app.delete('/logout', (req, res) => {
+//     req.logOut()
+//     res.redirect('/login')
+//   })
 
+app.delete("/logout", (req, res) => {
+  req.logout(req.user, err => {
+      if (err) return next(err)
+      res.redirect("/")
+  })
+})
 
-//routes
-app.use(express.static('public')); //Static web route
+function checkAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+      return next()
+  }
+  res.redirect("/login")
+}
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-  });
+function checkNotAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+      return res.redirect("/")
+  }
+  next()
+}
 
-
-  app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/public/login.html');
-  });
-
-  app.get('/signup', (req, res) => {
-    res.sendFile(__dirname + '/public/signup.html');
-  });
-
-  app.get('/resetpw', (req, res) => {
-    res.sendFile(__dirname + '/public/resetpw.html');
-  });
-
-  app.get("/dashboard", (req, res) => {
-    res.sendFile(__dirname + "/public/dashboard.html");
-  });
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(3000)
