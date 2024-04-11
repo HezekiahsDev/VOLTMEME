@@ -36,7 +36,7 @@ app.use(methodOverride("_method"))
 
 // Configuring the register post functionality
 app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/dashboard",
   failureRedirect: "/login",
   failureFlash: true
 }))
@@ -64,8 +64,12 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 // Routes
 app.use(express.static('public'))
 
-app.get('/', checkAuthenticated, (req, res) => {
+app.get('/dashboard', checkAuthenticated, (req, res) => {
   res.sendFile(__dirname + "/public/dashboard.html", {name: req.user.name})
+})
+
+app.get('/', checkNotAuthenticated, (req, res) => {
+  res.sendFile(__dirname + '/public/index.html')  
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -102,7 +106,7 @@ function checkAuthenticated(req, res, next){
 
 function checkNotAuthenticated(req, res, next){
   if(req.isAuthenticated()){
-      return res.redirect("/")
+      return res.redirect("/dashboard")
   }
   next()
 }
