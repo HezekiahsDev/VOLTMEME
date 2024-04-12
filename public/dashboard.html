@@ -94,27 +94,6 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-    // Function to create an alert message
-    function createAlert(message, alertType) {
-      const alertDiv = document.createElement('div');
-      alertDiv.classList.add('alert', `alert-${alertType}`);
-      alertDiv.innerHTML = `<strong>${message}</strong>`;
-      return alertDiv;
-    }
-
-    // Read flash messages from cookies or session data
-    const error = '<%= req.flash('error') %>';
-
-    // Display flash messages
-    if (error) {
-      const errorMessage = document.getElementById('error-message');
-      errorMessage.appendChild(createAlert(error, 'danger'));
-    }
-  </script>
-
-  <!-- Placeholder for error message -->
-  <div id="error-message"></div>
 
 </body>
 </html>

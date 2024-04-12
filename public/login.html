@@ -56,6 +56,8 @@
         <div class="header-text mb-3">
           <h2>Log in</h2>
         </div>
+
+      
         <form action="/login" method="POST">
           <div class="input-group mb-4">
             <input type="email" name="email" id="loginEmail" class="form-control form-control-lg bg-light fs-6" placeholder="Email"> 
@@ -105,27 +107,6 @@
        <!-- Template Main JS File -->
        <script src="assets/js/main.js"></script>
      
-       <script>
-         // Function to create an alert message
-         function createAlert(message, alertType) {
-           const alertDiv = document.createElement('div');
-           alertDiv.classList.add('alert', `alert-${alertType}`);
-           alertDiv.innerHTML = `<strong>${message}</strong>`;
-           return alertDiv;
-         }
-     
-         // Read flash messages from cookies or session data
-         const error = '<%= req.flash('error') %>';
-     
-         // Display flash messages
-         if (error) {
-           const errorMessage = document.getElementById('error-message');
-           errorMessage.appendChild(createAlert(error, 'danger'));
-         }
-       </script>
-     
-       <!-- Placeholder for error message -->
-       <div id="error-message"></div>
 
 </body>
 </html>

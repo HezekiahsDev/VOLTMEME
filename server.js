@@ -12,16 +12,20 @@ const initializePassport = require("./passport-config")
 const flash = require("express-flash")
 const session = require("express-session")
 const methodOverride = require("method-override")
-
-initializePassport(
-  passport,
-  email => users.find(user => user.email === email),
-  id => users.find(user => user.id === id)
-  )
+const mysql = require("mysql");
 
 
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'volt_meme'
+})
 
-const users = []
+
+initializePassport(passport);
+
+//const users = []
 
 app.use(express.urlencoded({extended: false}))
 app.use(flash())
@@ -41,25 +45,93 @@ app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
   failureFlash: true
 }))
 
-// Configuring the register post functionality
+
+
+
+
 app.post("/register", checkNotAuthenticated, async (req, res) => {
+  var { name, email, password } = req.body;
 
   try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10)
-      users.push({
-          id: Date.now().toString(), 
-          name: req.body.name,
-          email: req.body.email,
-          password: hashedPassword,
-      })
-      console.log(users); // Display newly registered in the console
-      res.redirect("/login")
-      
-  } catch (e) {
-      console.log(e);
-      res.redirect("/register")
+    if (!name || name.trim() === '') {
+      req.flash('error', 'Name cannot be empty');
+      throw new Error('Name cannot be empty');
+    }
+
+    if (!email || email.trim() === '') {
+      req.flash('error', 'Email cannot be empty');
+      throw new Error('Email cannot be empty');
+    }
+
+    if (!password || password.length < 8) {
+      req.flash('error', 'Password must be at least 8 characters long');
+      throw new Error('Password must be at least 8 characters long');
+    }
+    connection.query(
+      'SELECT * FROM users WHERE email = ?',
+      [email],
+      async (error, results) => {
+        if (error) {
+          console.error(error);
+          req.flash('error', 'Failed to register user');
+          return res.redirect('/register');
+        }
+        if (results.length > 0) {
+          // User with the same email already exists
+          req.flash('error', 'Email is already registered');
+          console.log("Email already registered")
+          return res.redirect('/register');
+        }
+        // Email is not registered, proceed with registration
+        const hashedPassword = await bcrypt.hash(password, 10);
+        // Insert user into database
+        connection.query(
+          'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
+          [name, email, hashedPassword],
+          (error, results) => {
+            if (error) {
+              console.error(error);
+              req.flash('error', 'Failed to register user');
+              return res.redirect('/register');
+            }
+            console.log('User registered successfully');
+            res.redirect('/login');
+          }
+        );
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.redirect('/register');
   }
-})
+});
+
+// app.post('/register', checkNotAuthenticated, async (req, res) => {
+//   const { name, email, password } = req.body;
+
+//   try {
+    // Check if user with the same email already exists
+    
+
+// Configuring the register post functionality
+// app.post("/register", checkNotAuthenticated, async (req, res) => {
+
+//   try {
+//       const hashedPassword = await bcrypt.hash(req.body.password, 10)
+//       users.push({
+//           id: Date.now().toString(), 
+//           name: req.body.name,
+//           email: req.body.email,
+//           password: hashedPassword,
+//       })
+//       console.log(users); // Display newly registered in the console
+//       res.redirect("/login")
+      
+//   } catch (e) {
+//       console.log(e);
+//       res.redirect("/register")
+//   }
+// })
 
 // Routes
 app.use(express.static('public'))
@@ -83,23 +155,6 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 app.get('/resetpw', checkNotAuthenticated, (req, res) => {
   res.sendFile(__dirname + '/public/resetpw.html')  
 })
-// End Routes
-
-// app.delete('/logout', (req, res) => {
-//     req.logOut()
-//     res.redirect('/login')
-//   })
-
-/**app.delete("/logout", (req, res) => {
-  req.logout(req.user, err => {
-      if (err) return next(err)
-      res.redirect("/")
-  })
-})**/
-//app.get("/logout", (req, res) => {
-//  req.logout(); // Clear the login session for the current user
-//  res.redirect("/"); // Redirect to the homepage after logout
-//});
 
 app.post("/logout", (req, res) => {
   // Clear the session
@@ -110,6 +165,7 @@ app.post("/logout", (req, res) => {
     } else {
       // Redirect to the homepage or login page after logout
       res.redirect("/");
+      console.log("logged out")
     }
   });
 });
@@ -128,4 +184,4 @@ function checkNotAuthenticated(req, res, next){
   next()
 }
 
-app.listen(3000);
+app.listen(3000)
