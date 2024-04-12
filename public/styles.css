@@ -12,6 +12,13 @@ header {
     font-size: large;
 }
 
+#flash-message {
+    background-color: #ffffcc;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 .top-container {
 
     padding: 10px;
