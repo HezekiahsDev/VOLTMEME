@@ -56,22 +56,6 @@
       <div class="header-text mb-3">
         <h2>Sign up</h2>
       </div>
-  
-      <!-- Example HTML code to display error message -->
-<div id="errorMessage"></div>
-
-<script>
-  // Get the error message from the URL query parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const errorMessage = urlParams.get('error');
-
-  // Display the error message in the HTML
-  if (errorMessage) {
-    const errorMessageDiv = document.getElementById('errorMessage');
-    errorMessageDiv.innerText = errorMessage;
-  }
-</script>
-
       <form action="/register" method="POST">
         <div class="input-group mb-3">
           <input type="text" name="name" id="fullName" class="form-control form-control-lg bg-light fs-6" placeholder="Name"> 
