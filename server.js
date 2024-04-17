@@ -12,6 +12,8 @@ const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const mysql = require("mysql");
+const bodyParser = require("body-parser");
+const path = require("path");
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -48,8 +50,16 @@ app.post(
   })
 );
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.post("/register", checkNotAuthenticated, async (req, res) => {
   var { name, email, password } = req.body;
+
+  // if (!name || !email || !password) {
+  //   res.status(400).send("Please provide all required fields.");
+  //   return;
+  // }
 
   try {
     if (!name || name.trim() === "") {
@@ -66,6 +76,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
       req.flash("error", "Password must be at least 8 characters long");
       throw new Error("Password must be at least 8 characters long");
     }
+
     connection.query(
       "SELECT * FROM users WHERE email = ?",
       [email],
@@ -132,14 +143,16 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 // })
 
 // Routes
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 app.get("/dashboard", checkAuthenticated, (req, res) => {
-  res.sendFile(__dirname + "/public/dashboard.html", { name: req.user.name });
+  res.sendFile(path.join(__dirname + "/public/dashboard.html"), {
+    name: req.user.name,
+  });
 });
 
 app.get("/", checkNotAuthenticated, (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
@@ -153,6 +166,8 @@ app.get("/register", checkNotAuthenticated, (req, res) => {
 app.get("/resetpw", checkNotAuthenticated, (req, res) => {
   res.sendFile(__dirname + "/public/resetpw.html");
 });
+
+app.use(express.static(__dirname + "/public"));
 
 app.post("/logout", (req, res) => {
   // Clear the session
@@ -182,4 +197,7 @@ function checkNotAuthenticated(req, res, next) {
   next();
 }
 
-app.listen(process.env.PORT);
+const PORT = process.env.PORT; // or any other port you prefer
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

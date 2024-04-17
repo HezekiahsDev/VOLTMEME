@@ -56,6 +56,7 @@
       <div class="header-text mb-3">
         <h2>Sign up</h2>
       </div>
+      <p id="response-message"></p>
       <form action="/register" method="POST">
         <div class="input-group mb-3">
           <input type="text" name="name" id="fullName" class="form-control form-control-lg bg-light fs-6" placeholder="Name"> 
@@ -71,6 +72,37 @@
         <div class="input-group mb-3">
           <button type="submit" id="registerButton" class="btn btn-lg btn-primary w-100 fs-6">Register</button>
         </div>
+
+
+
+        <!-----------------display error-------------------->
+    <!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Your JavaScript -->
+<script>
+    document.getElementById('registration-form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+        
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+            
+            const message = await response.text(); // Assuming the server sends text message
+            
+            // Display toastr message
+            toastr.success(message); // Display success toast
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>
+          <!------------------------------------->
         <!--
           <div class="input-group mb-3">
           <input type="password" name="confirm" id="confirmPassword" class="form-control form-control-lg bg-light fs-6" placeholder="Confirm password"> 
@@ -90,5 +122,19 @@
     
   </div>
 
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+      
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+        <script src="server.js"></script>
+        
 </body>
 </html>

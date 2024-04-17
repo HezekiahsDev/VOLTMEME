@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard_styles.css">
      <!-- Favicons -->
 <link href="assets/images/favicon.png" rel="icon">
 <link href="assets/images/favicon.png" rel="apple-touch-icon">
@@ -31,6 +31,8 @@
 
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
+
+<script src="dist/metamask-onboarding.bundle.js"></script>
 
 <body>
     <header class="navbar">
@@ -71,12 +73,11 @@
             <div class="claim">
                 <a href="#"><img src="assets/images/claim.png" alt=""></a>
             </div>
+
             <div>
-                <button class="button-connect">
-                    <a href="#">CONNECT WALLET</a>
-                </button>
+                <input class="block-button" type="button" value="Connect Wallet" id="connectWallet">
             </div>
-            <div class="contact">
+            <div class="contract">
                 <a href="#" class="contact">CONTRACT ADDRESS LINK</a>
             </div>
         </div>
@@ -85,14 +86,18 @@
      <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+       <!-- Vendor JS Files -->
+       <script src="assets/vendor/aos/aos.js"></script>
+       <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+       <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+       <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+       <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+       <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+       <script src="assets/vendor/php-email-form/validate.js"></script>
+     
+       <!-- Template Main JS File -->
+       <script src="assets/js/main.js"></script>
+       <script src="server.js"></script>
 
 
 </body>
