@@ -12,16 +12,24 @@ header {
   font-size: large;
 }
 
-#flash-message {
-  background-color: #ffffcc;
-  border: 1px solid #cccccc;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
 .top-container {
   padding: 10px;
   border-radius: 20px;
+  color: #ffffff;
+}
+
+.top-container_pre {
+  padding: 10px;
+  border-radius: 30px;
+  color: #ffffff;
+  height: 75vh;
+}
+
+.main-container_pre {
+  padding: 10px;
+  border-radius: 20px;
+  color: #ffffff;
+  height: 100vh;
 }
 
 .hello {
@@ -38,9 +46,29 @@ header {
   margin-bottom: 20px;
 }
 
+.welcome1 {
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.welcome_sub1 {
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
 main {
   background-color: #6536f7;
   display: flex;
+  height: 150vh;
   flex-direction: column;
   border-radius: 0px;
 }
@@ -85,7 +113,8 @@ a {
 }
 
 .claim {
-  position: absolute;
+  position: relative;
+  align-self: center;
   font-size: small;
   display: flex;
   margin-bottom: 0px;
@@ -135,7 +164,7 @@ a {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .block-button:hover,
@@ -150,4 +179,48 @@ a {
 .block-button:active {
   background-color: #0064bd;
   box-shadow: none;
+}
+
+/* CSS to style the box */
+.white-box {
+  width: calc(100% - 40px); /* Width of screen minus left and right margin */
+  max-width: 600px; /* Maximum width */
+  height: 30px; /* Height */
+  margin: 0 auto; /* Center horizontally */
+  background-color: white; /* Background color */
+  border-radius: 10px; /* Border radius */
+  overflow: hidden; /* Hide overflow */
+  display: flex; /* Enable flexbox */
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center items vertically */
+  padding: 0 20px; /* Padding */
+}
+
+/* CSS to style the text inside the box */
+.white-box span {
+  color: #000000; /* Text color */
+  font-size: 12px; /* Font size */
+  font-weight: bold; /* Font weight */
+}
+
+/* CSS to style the box */
+.blue-box {
+  width: calc(100% - 40px); /* Width of screen minus left and right margin */
+  max-width: 600px; /* Maximum width */
+  height: 30px; /* Height */
+  margin: 0 auto; /* Center horizontally */
+  background-color: #6536f7; /* Background color */
+  border-radius: 10px; /* Border radius */
+  overflow: hidden; /* Hide overflow */
+  display: flex; /* Enable flexbox */
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center items vertically */
+  padding: 0 20px; /* Padding */
+}
+
+/* CSS to style the text inside the box */
+.blue-box span {
+  color: #f4f4f4; /* Text color */
+  font-size: 12px; /* Font size */
+  font-weight: bold; /* Font weight */
 }

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@metamask/onboarding": "^1.0.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
@@ -24,6 +25,7 @@
     "np2": "^1.0.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
+    "pm2": "^5.3.1",
     "web3": "^4.7.0"
   },
   "devDependencies": {
