@@ -22,14 +22,16 @@ header {
   padding: 10px;
   border-radius: 30px;
   color: #ffffff;
-  height: 75vh;
+  width: 100%;
+  min-height: 50vh;
 }
 
 .main-container_pre {
   padding: 10px;
   border-radius: 20px;
   color: #ffffff;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .hello {
@@ -68,7 +70,7 @@ header {
 main {
   background-color: #6536f7;
   display: flex;
-  height: 150vh;
+  height: 80vh;
   flex-direction: column;
   border-radius: 0px;
 }
@@ -223,4 +225,79 @@ a {
   color: #f4f4f4; /* Text color */
   font-size: 12px; /* Font size */
   font-weight: bold; /* Font weight */
+}
+
+. {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+.clock-hero {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #08001f, #30197d);
+  position: relative;
+}
+
+.clock-container {
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 250%);
+}
+
+.clock {
+  width: 80%%;
+  height: 80%;
+  background: rgba(235, 0, 255, 0.11);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(40px);
+}
+
+.clock-container::before {
+  content: "";
+  width: 120px;
+  height: 120px;
+  background: #401990;
+  border-radius: 10px;
+  position: absolute;
+  right: -30px;
+  top: -50px;
+  z-index: -1;
+}
+
+.clock-container::after {
+  content: "";
+  width: 120px;
+  height: 120px;
+  background: #401990;
+  border-radius: 50%;
+  position: absolute;
+  left: -30px;
+  bottom: -50px;
+  z-index: -1;
+}
+
+.clock span {
+  font-size: 50px;
+  width: 80px;
+  color: #f4f4f4;
+  display: inline-block;
+  text-align: center;
+}
+
+.clock span::after {
+  content: "COUNTDOWN TO LAUNCH";
+  font-size: 14px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
 }

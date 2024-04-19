@@ -151,6 +151,12 @@ app.get("/dashboard", checkAuthenticated, (req, res) => {
   });
 });
 
+app.get("/presale", checkAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/presale.html"), {
+    name: req.user.name,
+  });
+});
+
 app.get("/", checkNotAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "/public/index.html"));
 });
