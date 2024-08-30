@@ -1,3 +1,5 @@
+//server.js
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
@@ -73,6 +75,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     }
 
     if (!password || password.length < 8) {
+      alert("Password must be at least 8 characters long");
       req.flash("error", "Password must be at least 8 characters long");
       throw new Error("Password must be at least 8 characters long");
     }
@@ -115,35 +118,6 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     res.redirect("/register");
   }
 });
-
-// app.post('/register', checkNotAuthenticated, async (req, res) => {
-//   const { name, email, password } = req.body;
-
-//   try {
-// Check if user with the same email already exists
-
-// Configuring the register post functionality
-// app.post("/register", checkNotAuthenticated, async (req, res) => {
-
-//   try {
-//       const hashedPassword = await bcrypt.hash(req.body.password, 10)
-//       users.push({
-//           id: Date.now().toString(),
-//           name: req.body.name,
-//           email: req.body.email,
-//           password: hashedPassword,
-//       })
-//       console.log(users); // Display newly registered in the console
-//       res.redirect("/login")
-
-//   } catch (e) {
-//       console.log(e);
-//       res.redirect("/register")
-//   }
-// })
-
-// Routes
-//app.use(express.static("public"));
 
 app.get("/dashboard", checkAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname + "/public/dashboard.html"), {

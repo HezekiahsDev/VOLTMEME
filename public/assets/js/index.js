@@ -1,3 +1,4 @@
+//wallet.js
 const forwarderOrigin = "http://localhost:3000";
 
 const initialize = () => {
